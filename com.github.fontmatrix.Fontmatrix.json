@@ -15,6 +15,7 @@
         "--device=dri",
         "--env=QT_QPA_PLATFORM=xcb",
         "--env=QT_AUTO_SCREEN_SCALE_FACTOR=1",
+        "--persist=.Fontmatrix",
         "--env=TMPDIR=/var/tmp"
     ],
     "cleanup": [
