@@ -16,6 +16,7 @@
  <content_rating type="oars-1.1" />
  <launchable type="desktop-id">com.github.fontmatrix.Fontmatrix.desktop</launchable>
  <translation type="qt">fontmatrix</translation>
+ <developer_name>Fontmatrix Developers</developer_name>
  <screenshots>
   <screenshot type="default">
    <image>https://raw.githubusercontent.com/fontmatrix/fontmatrix/v0.9.100/screenshot.png</image>
