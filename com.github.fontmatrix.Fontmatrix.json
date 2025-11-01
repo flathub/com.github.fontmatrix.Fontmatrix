@@ -2,9 +2,9 @@
     "id": "com.github.fontmatrix.Fontmatrix",
     "runtime": "org.kde.Platform",
     "base": "io.qt.qtwebkit.BaseApp",
-    "base-version": "5.15-24.08",
-    "sdk": "org.kde.Sdk//5.15-24.08",
-    "runtime-version": "5.15-24.08",
+    "base-version": "5.15-25.08",
+    "sdk": "org.kde.Sdk//5.15-25.08",
+    "runtime-version": "5.15-25.08",
     "rename-icon": "fontmatrix",
     "rename-desktop-file": "fontmatrix.desktop",
     "command": "fontmatrix",
@@ -27,6 +27,9 @@
         {
             "name": "fontmatrix",
             "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+            ],
             "post-install": [
                 "install -Dm644 -t /app/share/metainfo com.github.fontmatrix.Fontmatrix.appdata.xml",
                 "install -Dm644 -t /app/share/license/fontmatrix COPYING AUTHORS",
