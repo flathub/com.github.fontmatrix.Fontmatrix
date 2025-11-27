@@ -29,4 +29,11 @@
  <releases>
    <release version="0.9.100" date="2020-09-15" />
  </releases>
+ <keywords>
+  <keyword>fontmanager</keyword>
+  <keyword>fontorganizer</keyword>
+  <keyword>typeface manager</keyword>
+  <keyword>free font collections</keyword>
+  <keyword>font library management</keyword>
+ </keywords>
 </component>
