@@ -1,51 +1,65 @@
 {
     "id": "com.github.fontmatrix.Fontmatrix",
     "runtime": "org.kde.Platform",
-    "base": "io.qt.qtwebkit.BaseApp",
-    "base-version": "5.15-25.08",
-    "sdk": "org.kde.Sdk//5.15-25.08",
-    "runtime-version": "5.15-25.08",
+    "runtime-version": "6.11",
+    "sdk": "org.kde.Sdk",
     "rename-icon": "fontmatrix",
-    "rename-desktop-file": "fontmatrix.desktop",
     "command": "fontmatrix",
+    "separate-locales": false,
     "finish-args": [
         "--share=ipc",
-        "--socket=x11",
+        "--socket=fallback-x11",
+        "--socket=wayland",
         "--device=dri",
-        "--env=QT_QPA_PLATFORM=xcb",
-        "--env=QT_AUTO_SCREEN_SCALE_FACTOR=1",
-        "--persist=.Fontmatrix",
-        "--env=TMPDIR=/var/tmp"
+        "--filesystem=xdg-data/fonts:create",
+        "--filesystem=xdg-config/fontconfig:create",
+        "--persist=.Fontmatrix"
     ],
     "cleanup": [
         "/share/man"
     ],
-    "cleanup-commands": [
-        "/app/cleanup-BaseApp.sh"
-    ],
     "modules": [
         {
-            "name": "fontmatrix",
+            "name": "podofo",
             "buildsystem": "cmake-ninja",
+            "builddir": true,
             "config-opts": [
-                "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
-            ],
-            "post-install": [
-                "install -Dm644 -t /app/share/metainfo com.github.fontmatrix.Fontmatrix.appdata.xml",
-                "install -Dm644 -t /app/share/license/fontmatrix COPYING AUTHORS",
-                "install -Dm644 -T src/icons/application-fontmatrix_64.png /app/share/icons/hicolor/64x64/apps/fontmatrix.png",
-                "install -Dm644 -T src/icons/application-fontmatrix_128.png /app/share/icons/hicolor/128x128/apps/fontmatrix.png",
-                "install -Dm644 -T src/icons/application-fontmatrix-systray-vectors.svg /app/share/icons/hicolor/scalable/apps/fontmatrix.svg"
+                "-DBUILD_SHARED_LIBS=OFF",
+                "-DPODOFO_WITH_FONTMANAGER=OFF",
+                "-DPODOFO_BUILD_TEST=OFF",
+                "-DPODOFO_BUILD_EXAMPLES=OFF",
+                "-DPODOFO_BUILD_UNSUPPORTED_TOOLS=OFF"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/fontmatrix/fontmatrix/archive/v0.9.100.tar.gz",
-                    "sha256": "241021e24b0e2cdbc4bdf516d41ddfd23675a5a098bdaa0f7564d866cd292659"
-                },
+                    "url": "https://github.com/podofo/podofo/archive/refs/tags/1.1.2.tar.gz",
+                    "sha256": "d6ffe6fc173ac6d6e5b00f5cb9db01990cab1bdf7cc03bdeffce3013bc9ec63a",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 10527,
+                        "stable-only": true,
+                        "url-template": "https://github.com/podofo/podofo/archive/refs/tags/$version.tar.gz"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "fontmatrix",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_DISABLE_FIND_PACKAGE_KF6Auth=ON"
+            ],
+            "sources": [
                 {
-                    "type": "file",
-                    "path": "com.github.fontmatrix.Fontmatrix.appdata.xml"
+                    "type": "git",
+                    "url": "https://github.com/fontmatrix/fontmatrix.git",
+                    "tag": "v1.0.1",
+                    "commit": "72193ac819096bc26aef15336572991da54cdbad",
+                    "x-checker-data": {
+                        "type": "git",
+                        "tag-pattern": "^v([\\d.]+)$"
+                    }
                 }
             ]
         }
